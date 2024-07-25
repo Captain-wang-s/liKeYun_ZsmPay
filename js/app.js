@@ -1,4 +1,4 @@
-const { createApp, ref, computed } = Vue;
+const { createApp, ref, computed, onMounted } = Vue;
 
 createApp({
     setup() {
@@ -7,7 +7,7 @@ createApp({
         const orderTitle = ref(urlParams.get('order_title') || '支付测试'); // 订单标题
         const orderNum = ref(urlParams.get('order_num') || ''); // 订单号
         const orderTime = ref(urlParams.get('order_time') || ''); // 订单时间
-        const orderPrice = ref(urlParams.get('order_amount') || '0.02'); // 订单价格
+        const orderPrice = ref(urlParams.get('order_amount') || '1'); // 订单价格
         const orderAmount = ref(orderPrice.value); // 需要支付的金额
         const orderAmountCheckPayStatus = ref(orderPrice.value); // 这个用来查询订单状态的金额
         const paybtnsShow = ref(!urlParams.has('order_num')); // 发起支付的按钮显示状态
@@ -21,6 +21,15 @@ createApp({
         const loaderColor = ref(''); // 加载动画主题色
         const orderEnd = ref(''); // 订单结束文案
         const payApp = ref(''); // 支付平台
+
+        onMounted(() => {
+            // 添加背景色闪烁效果
+            const copyButton = document.querySelector('.copy-button');
+            setInterval(() => {
+                copyButton.style.backgroundColor = copyButton.style.backgroundColor === 'green' ? 'white' : 'green';
+            }, 1000);
+        });
+
         // 格式化倒计时
         const formattedCountdown = computed(() => {
             const minutes = Math.floor(countdown.value / 60).toString().padStart(2, '0');
@@ -140,6 +149,16 @@ createApp({
             startPolling();
         }
 
+        // 复制金额方法
+        function copyAmount() {
+            const amount = orderAmount.value.replace('￥', '');
+            navigator.clipboard.writeText(amount).then(() => {
+                alert('复制成功，长按扫码后在支付时可粘贴');
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
         return {
             orderQRCode,
             orderTitle,
@@ -159,11 +178,10 @@ createApp({
             showLoadding,
             loaderColor,
             orderEnd,
-            payApp
+            payApp,
+            copyAmount
         };
     },
-    // HTML模板
-
     template: `
     <div class="order">
         <div class="header">Captain科技 - 订单单页</div>
@@ -191,8 +209,9 @@ createApp({
         <p class="order_amount">
             <span class="you_need_pay">{{ orderAmount }}</span>
         </p>
+        <button class="copy-button" v-show="showPayTips" @click="copyAmount" style="color: red; text-align: center;">点我复制付款金额</button>
         <p class="pay_tips" v-show="showPayTips">请使用{{ payApp }}扫码支付<span class="you_need_pay_">{{ orderAmount }}</span>元</p>
-        <p class="pay_warning" v-show="showPayTips" style="color: red; text-align: center;">金额不能出错，必须一模一样</p>
+        <p class="pay_warning" v-show="showPayTips" style="color: red; text-align: center;">付款金额必须一模一样否则支付无效</p>
         <p class="clickOtherAmountTips" v-show="showPayTips">扫码后戳 <span>其它金额</span> 输入上方金额</p>
         <div class="loader" v-show="showLoadding" :style="loaderColor"></div>
         <p class="loadding_text" v-show="showLoadding">正在创建订单...</p>
