@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 body {
     background: #edf2f7;
@@ -83,7 +83,7 @@ body {
 }
 :root {
     --qrcode-width: 200px;
-    --qrcode-height: 200px
+    --qrcode-height: 200px;
 }
 .order-info {
     width: 100%;
@@ -171,7 +171,7 @@ body {
     font-weight: bold;
 }
 .qrcode_blur {
-  filter: blur(3px);
+    filter: blur(3px);
 }
 .bottom_links .link {
     text-decoration: none;
@@ -181,7 +181,6 @@ body {
     text-align: center;
     padding: 10px 0;
 }
-
 .loader {
     border: 4px solid #f3f3f3;
     border-radius: 50%;
@@ -190,7 +189,6 @@ body {
     animation: spin 0.3s linear infinite;
     margin: 35px auto;
 }
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -214,4 +212,20 @@ body {
 }
 .clickOtherAmountTips span {
     color: #39f;
+}
+.copy-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1s;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0% { background-color: green; }
+    50% { background-color: white; }
+    100% { background-color: green; }
 }
