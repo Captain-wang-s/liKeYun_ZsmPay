@@ -1,3 +1,17 @@
+一个利用易支付赞赏码支付的易支付通道，
+由Captain魔改~
+感谢TANKING提供开源程序单页
+
+本群无利益相关。 不提供技术服务，大家自行取用
+
+二开地址:
+https://github.com/Captain-wang-s/liKeYun_ZsmPay
+
+体验地址：https://sourl.cn/L4Ndza
+案例1地址：https://sourl.cn/eFh635
+案例2地址:：https://sourl.cn/fYFfGR
+
+
 易支付插件改名为：zsm ，文件夹放在 plugins 目录  如图：
 
 <img width="713" alt="image" src="https://github.com/user-attachments/assets/7c1af362-40be-4927-b799-43c0a2462f8c">
