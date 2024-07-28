@@ -155,6 +155,7 @@ https://zsmpay.who365.club/
 
 赞赏
 ---
+本通道使用赞赏码可用于测试稳定性：https://sourl.cn/NXXiY4
 
 如果你喜欢我的作品，请给予一些支持！<br>
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/2f790275-25b9-4c5c-86ec-3339cd1bf7d2">
